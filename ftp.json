@@ -1,0 +1,29 @@
+{
+"security":
+ {
+  "tls":
+   {
+    "enabled":"1",
+    "force":"0",
+    "cert":"ftpusercert.pem",
+    "key":"ftpuserkey.pem"
+   },
+  "fails_before_punishment":"10",
+  "fails_cooldown_min":"20",
+  "punishment":"freezeuser",
+  "other_punishment":"banip,tempban,freezeuser",
+  "punishment_time":"45",
+  "allow_anonymous_rdonly":"0"
+ },
+ "integrity_check":
+ {
+  "enabled":"1",
+  "algorithm":"sha1",
+  "other_algorithms":"sha1,sha256,md5,crc8,crc16,crc32"
+ },
+ "ftp_default_dir":"files",
+ "motd":"pyftpdlib ftp server",
+ "port":"25545",
+ "max_connections":"100",
+ "max_connections_per_ip":"50"
+}
