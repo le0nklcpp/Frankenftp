@@ -3,11 +3,13 @@
  {
   "tls":
    {
-    "enabled":"1",
+    "enabled":"0",
     "force":"0",
     "cert":"ftpusercert.pem",
     "key":"ftpuserkey.pem"
    },
+  "pw_hash_algorithm":"none",
+  "other_pw_hash_algorithms":"sha256,sha3-512,sha3-256,sha3-384",
   "fails_before_punishment":"10",
   "fails_cooldown_min":"20",
   "punishment":"freezeuser",
@@ -19,7 +21,7 @@
  {
   "enabled":"1",
   "algorithm":"sha1",
-  "other_algorithms":"sha1,sha256,md5,crc8,crc16,crc32"
+  "other_algorithms":"sha1,sha256,md5,crc8,crc16,crc32,sha3-256,sha3-512,sha3-384,md4"
  },
  "ftp_default_dir":"files",
  "motd":"pyftpdlib ftp server",
