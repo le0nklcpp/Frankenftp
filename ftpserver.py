@@ -29,7 +29,7 @@ def main():
   handler=TLS_FTPHandler
   handler.certfile=config.tls_cert
   handler.keyfile=config.tls_key
-  handler.tls_control.required = handler.tls_data_required = config.tls_force
+  handler.tls_control_required = handler.tls_data_required = config.tls_force
   handler.authorizer=authorizer
  else:
   print('TLS disabled')
