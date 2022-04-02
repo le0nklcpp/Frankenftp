@@ -3,9 +3,12 @@
 #
 # loadadmins - loads user configs and writes into list users [[name,password,directory]]
 DEFAULT_FTP_DIR="./files"
-def loadadmins():
+configfile='ftp-users.ini'
+def loadadmins(path):
  users=[]
- f=open('ftp-users.ini','r')
+ fpath = path + configfile
+ f=open(fpath,'r')
+ print("Reading "+fpath)
  s=f.readline()
  for s in f:
   l=parsestr(s)

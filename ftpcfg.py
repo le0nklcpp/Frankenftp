@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # ftpcfg - reading cfg
 import json
+configfile='ftp.json'
 class FTPjsconf:
  data = {}
  tls_enabled = 0
@@ -23,7 +24,9 @@ class FTPjsconf:
  def __init__(self,home):
   def bc(s):
    return bool(int(s))
-  d = json.load(open(home+'ftp.json','r'))
+  fpath = home+configfile
+  d = json.load(open(fpath,'r'))
+  print("Reading "+fpath)
   # security object
   s = d['security']
   tls = s['tls']
