@@ -2,7 +2,7 @@
 import pyftpdlib
 import ftpcfg
 from pyftpdlib.servers import FTPServer as srv
-from pyftpdlib.authorizers import DummyAuthorizer
+from authorizer import ExtendedAuthorizer
 import os
 import ftpusers
 import sys
@@ -16,7 +16,7 @@ def main():
  print('Read json config')
  users=ftpusers.loadadmins(confp)
  print('Loaded list of {0} users'.format(len(users)))
- authorizer = DummyAuthorizer() # TODO: write your own authorizer
+ authorizer = ExtendedAuthorizer(config)
  print('Initialized authorizer')
  for i in users:
   if not os.path.exists(i[2]) or not os.path.isdir(i[2]):
@@ -38,7 +38,7 @@ def main():
   from pyftpdlib.handlers import FTPHandler
   handler = FTPHandler
  handler.authorizer=authorizer
- handler.banner='Python FTP server'
+ handler.banner=config.motd
  address=('',config.port)
  server=srv(address,handler)
  server.max_cons = config.max_cons

@@ -10,6 +10,7 @@
    },
   "pw_hash_algorithm":"none",
   "other_pw_hash_algorithms":"sha256,sha3-512,sha3-256,sha3-384",
+  "WARNING":"BRUTE FORCE PROTECTION IS NOT IMPLEMENTED",
   "fails_before_punishment":"10",
   "fails_cooldown_min":"20",
   "punishment":"freezeuser",
@@ -19,6 +20,7 @@
  },
  "integrity_check":
  {
+  "WARNING":"This is not implemented",
   "enabled":"1",
   "algorithm":"sha1",
   "other_algorithms":"sha1,sha256,md5,crc8,crc16,crc32,sha3-256,sha3-512,sha3-384,md4"

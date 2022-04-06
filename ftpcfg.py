@@ -2,6 +2,8 @@
 # ftpcfg - reading cfg
 import json
 configfile='ftp.json'
+class FTPConfigException(Exception):
+ pass
 class FTPjsconf:
  data = {}
  tls_enabled = 0
@@ -22,6 +24,7 @@ class FTPjsconf:
  max_cons_per_ip = 25
  pwhash=""
  def __init__(self,home):
+  allowed_pw_values=('none','sha256','sha3-512','sha3-256','sha3-384')
   def bc(s):
    return bool(int(s))
   fpath = home+configfile
@@ -40,6 +43,8 @@ class FTPjsconf:
   self.bantype = s['punishment']
   self.anonymous = bc(s['allow_anonymous_rdonly'])
   self.pwhash = s['pw_hash_algorithm']
+  if not self.pwhash in allowed_pw_values:
+   raise FTPConfigException('Invalid pw_hash_algorithm field value:'+self.pwhash+'.Possible values:'+','.join(['{}']*len(allowed_pw_values)).format(*allowed_pw_values))
   # integrity check object
   i = d['integrity_check']
   self.integrity_check = i['enabled']
