@@ -1,3 +1,19 @@
+#!/usr/bin/python3
+""" This file is part of Frankenftp - pyftpdlib-based FTP server
+
+    Frankenftp is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Frankenftp is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Frankenftp.  If not, see <https://www.gnu.org/licenses/>.
+"""
 # -*- coding: utf-8 -*-
 import pyftpdlib
 import ftpcfg
@@ -53,12 +69,17 @@ def parseargs(argv):
  def displayhelp():
   print("Usage: frankenftp [options]")
   print("Options:")
-  print("--conf configdir   Specify config path")
+  print("--config configdir Specify config path")
   print("--help             Display help and exit")
   print("--version          Display current software version and exit")
   return True
  def printversion():
   print("Frankenftp - pyftpdlib-based FTP server")
+  print("Copyright (C) le0nklcpp,2021-2022")
+  print("This program is free software: you can redistribute it and/or modify\n"+\
+    "it under the terms of the GNU General Public License as published by\n"+\
+    "the Free Software Foundation, either version 3 of the License, or\n"+\
+    "(at your option) any later version.")
   print("Pyftpdlib version: {0}".format(pyftpdlib.__ver__))
   print("Python3 version: {0}.{1}.{2}".format(sys.version_info.major,sys.version_info.minor,sys.version_info.micro))
   return True
