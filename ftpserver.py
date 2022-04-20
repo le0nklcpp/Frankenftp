@@ -19,38 +19,41 @@ import pyftpdlib
 import ftpcfg
 from pyftpdlib.servers import FTPServer as srv
 from authorizer import ExtendedAuthorizer
+from pyftpdlib.log import logger
+from pyftpdlib.log import config_logging
 import os
 import ftpusers
 import sys
 
 confp = '.'+os.sep
 def main():
+ config_logging()
  os.chdir(confp) # to be sure - bad config protection. After execution
- print('FTPEnstein')
- print('Changed directory:',os.getcwd())
+ logger.info('Frankenftp - pyftpdlib-based FTP server')
+ logger.info('Changed directory:'+os.getcwd())
  config = ftpcfg.FTPjsconf(confp)
- print('Read json config')
+ logger.info('Read json config')
  users=ftpusers.loadadmins(confp)
- print('Loaded list of {0} users'.format(len(users)))
+ logger.info('Loaded list of {0} users'.format(len(users)))
  authorizer = ExtendedAuthorizer(config)
- print('Initialized authorizer')
+ logger.info('Initialized authorizer')
  for i in users:
   if not os.path.exists(i[2]) or not os.path.isdir(i[2]):
    i[2] = config.default_dir
   authorizer.add_user(i[0],i[1],i[2],perm='elradfmw')
  # Anonymous read-only user
  if config.anonymous:
-   print('!!!!WARNING!!!!Adding read-only anonymous user')
+   logger.warning('!!!!WARNING!!!!Adding read-only anonymous user')
    authorizer.add_anonymous(config.default_dir,perm='elr')
  if config.tls_enabled:
-  print('TLS enabled')
+  logger.info('TLS enabled')
   from pyftpdlib.handlers import TLS_FTPHandler
   handler=TLS_FTPHandler
   handler.certfile=config.tls_cert
   handler.keyfile=config.tls_key
   handler.tls_control_required = handler.tls_data_required = config.tls_force
  else:
-  print('!!!!WARNING!!!!TLS disabled')
+  logger.warning('!!!!WARNING!!!!TLS disabled')
   from pyftpdlib.handlers import FTPHandler
   handler = FTPHandler
  handler.authorizer=authorizer

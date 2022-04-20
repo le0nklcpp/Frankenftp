@@ -16,6 +16,7 @@
 # -*- coding: utf-8 -*-
 # ftpcfg - reading cfg
 import json
+from pyftpdlib.log import logger
 configfile='ftp.json'
 class FTPConfigException(Exception):
  pass
@@ -44,7 +45,7 @@ class FTPjsconf:
    return bool(int(s))
   fpath = home+configfile
   d = json.load(open(fpath,'r'))
-  print("Reading "+fpath)
+  logger.info("Reading "+fpath)
   # security object
   s = d['security']
   tls = s['tls']

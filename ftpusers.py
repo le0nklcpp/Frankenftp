@@ -17,19 +17,22 @@
 ##FTP project - load users
 #
 # loadadmins - loads user configs and writes into list users [[name,password,directory]]
+from pyftpdlib.log import logger
 DEFAULT_FTP_DIR="./files"
 configfile='ftp-users.ini'
+class FTPUsersException(Exception):
+ pass
 def loadadmins(path):
  users=[]
  fpath = path + configfile
  f=open(fpath,'r')
- print("Reading "+fpath)
+ logger.info("Reading "+fpath)
  s=f.readline()
  for s in f:
   l=parsestr(s)
   if l: 
    if len(l)<2:
-    print("ftpusers.py: failed to parse string:\"",s,"\" - Not enough arguments")
+    raise FTPUsersException("failed to parse string:\""+s+"\" - Not enough arguments")
    else:
     if len(l)<3:
      l.append(DEFAULT_FTP_DIR)
