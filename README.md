@@ -18,11 +18,15 @@ See ftp.json to understand what works and can be configured now:
 User info is stored in ftp-users.ini file in this format:
 
 "username" "password" "directory"
+
 Optionally, you can restrict user access to read-only by specifying permissions:
+
 "username" "password" "directory" "r"
 
 Only accepted permissions are
+
 rw - read-write
+
 r - read-only
 
 # Everything else IS NOT IMPLEMENTED
