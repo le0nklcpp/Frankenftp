@@ -19,6 +19,7 @@
 # loadadmins - loads user configs and writes into list users [[name,password,directory]]
 from pyftpdlib.log import logger
 DEFAULT_FTP_DIR="./files"
+DEFAULT_PERM="elradfmw"
 configfile='ftp-users.ini'
 class FTPUsersException(Exception):
  pass
@@ -36,6 +37,16 @@ def loadadmins(path):
    else:
     if len(l)<3:
      l.append(DEFAULT_FTP_DIR)
+    if len(l)<4:
+     l.append(DEFAULT_PERM)
+    else:
+     if l[3]=='rw':
+      l[3]='elradfmw'
+     else:
+      if l[3]=='r':
+       l[3]='elr'
+      else:
+       raise FTPUsersException('User '+l[0]+" has bad permissions configuration:"+l[3]+".Accepted values:rw,r")
     users.append(l)
  return users
 def parsestr(s):

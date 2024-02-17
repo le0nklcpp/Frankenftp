@@ -40,7 +40,8 @@ def main():
  for i in users:
   if not os.path.exists(i[2]) or not os.path.isdir(i[2]):
    i[2] = config.default_dir
-  authorizer.add_user(i[0],i[1],i[2],perm='elradfmw')
+  logger.info('Adding user '+i[0]+' with permissions '+i[3])
+  authorizer.add_user(i[0],i[1],i[2],perm=i[3])
  # Anonymous read-only user
  if config.anonymous:
    logger.warning('!!!!WARNING!!!!Adding read-only anonymous user')
@@ -77,8 +78,8 @@ def parseargs(argv):
   print("--version          Display current software version and exit")
   return True
  def printversion():
-  print("Frankenftp - pyftpdlib-based FTP server")
-  print("Copyright (C) le0nklcpp,2021-2022")
+  print("Frankenftp - pyftpdlib-based FTP server,version 24.02.17")
+  print("Copyright (C) le0nklcpp,2021-2024")
   print("This program is free software: you can redistribute it and/or modify\n"+\
     "it under the terms of the GNU General Public License as published by\n"+\
     "the Free Software Foundation, either version 3 of the License, or\n"+\
