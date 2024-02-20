@@ -29,5 +29,7 @@
  "motd":"pyftpdlib ftp server",
  "port":"25545",
  "max_connections":"100",
- "max_connections_per_ip":"50"
+ "max_connections_per_ip":"50",
+ "open_ports":[]
+ "open_ports_sample":[25540,25541]
 }
