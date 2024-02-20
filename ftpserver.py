@@ -59,6 +59,9 @@ def main():
   handler = FTPHandler
  handler.authorizer=authorizer
  handler.banner=config.motd
+ if len(config.open_ports)>0:
+  logger.info("Setting passive ports:"+str(config.open_ports[0])+" to "+str(config.open_ports[1]))
+  handler.passive_ports=range(config.open_ports[0],config.open_ports[1])
  address=('',config.port)
  server=srv(address,handler)
  server.max_cons = config.max_cons
@@ -78,7 +81,7 @@ def parseargs(argv):
   print("--version          Display current software version and exit")
   return True
  def printversion():
-  print("Frankenftp - pyftpdlib-based FTP server,version 24.02.17")
+  print("Frankenftp - pyftpdlib-based FTP server,version 24.02.20")
   print("Copyright (C) le0nklcpp,2021-2024")
   print("This program is free software: you can redistribute it and/or modify\n"+\
     "it under the terms of the GNU General Public License as published by\n"+\

@@ -38,6 +38,7 @@ class FTPjsconf:
  port = 0
  max_cons = 50
  max_cons_per_ip = 25
+ open_ports=[]
  pwhash=""
  def __init__(self,home):
   allowed_pw_values=('none','sha256','sha3-512','sha3-256','sha3-384')
@@ -59,6 +60,7 @@ class FTPjsconf:
   self.bantype = s['punishment']
   self.anonymous = bc(s['allow_anonymous_rdonly'])
   self.pwhash = s['pw_hash_algorithm']
+  self.open_ports=d['open_ports']
   if not self.pwhash in allowed_pw_values:
    raise FTPConfigException('Invalid pw_hash_algorithm field value:'+self.pwhash+'.Possible values:'+','.join(['{}']*len(allowed_pw_values)).format(*allowed_pw_values))
   # integrity check object
