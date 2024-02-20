@@ -12,6 +12,7 @@ See ftp.json to understand what works and can be configured now:
 |Anonymous read-only|security:allow_anonymous_rdonly|Anonymous read-only user with access to ftp_default_dir|
 |Anonymous default directory|ftp_default_dir|specify default directory for anonymous user access|
 |Port|port|Server port|
+|Passive ports|open_ports|Assign passive ports for access through firewall(you need to open these ports)|
 ||max_connections|0 = unlimited|
 ||max_connections_per_ip|0 = unlimited|
 
