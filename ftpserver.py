@@ -81,7 +81,7 @@ def parseargs(argv):
   print("--version          Display current software version and exit")
   return True
  def printversion():
-  print("Frankenftp - pyftpdlib-based FTP server,version 24.02.20")
+  print("Frankenftp - pyftpdlib-based FTP server,version 24.02.21")
   print("Copyright (C) le0nklcpp,2021-2024")
   print("This program is free software: you can redistribute it and/or modify\n"+\
     "it under the terms of the GNU General Public License as published by\n"+\
